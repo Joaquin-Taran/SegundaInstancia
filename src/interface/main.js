@@ -76,6 +76,7 @@ const linkClas = document.getElementById("linkClasificacion");
 const botonMsgP = document.getElementById("botonMsg");
 const botonNot = document.getElementById("btnNotis");
 const divNot = document.getElementById("divNotificaciones");
+const linkAban = document.getElementById("linkAbandonar");
 
 menuDesp.addEventListener("click", desplegarMenu);
 crear.addEventListener("click", crearCompe);
@@ -85,8 +86,6 @@ atras.addEventListener("click", irAtras);
 atras.addEventListener("click", ocultarCompeticion);
 botonPerfil.addEventListener("click", irPerfil);
 modoOs.addEventListener("change", modoOscuro);
-crearForm.addEventListener("submit", crearDivCompeticion);
-crearForm.addEventListener("submit", elementosCompe);
 crearForm.addEventListener("submit", submitCompe);
 crearForm.addEventListener("change", esconderContra);
 linkC.addEventListener("click", irMisCompe);
@@ -101,6 +100,7 @@ linkRes.addEventListener("click", mostrarRes);
 linkClas.addEventListener("click", mostrarClas);
 botonMsgP.addEventListener("click", mandarMensajePredeterminado);
 botonNot.addEventListener("click", mostrarNot);
+linkAban.addEventListener("click", abandonarCompe);
 document.addEventListener("DOMContentLoaded", verificarCompetencia);
 
 
@@ -325,6 +325,8 @@ function submitCompe() {
       tablaUnirse.appendChild(nuevaFila);
 
       // Reset de valores a predeterminado
+      crearDivCompeticion();
+      elementosCompe();
       document.getElementById("nombreC").value = "";
       document.getElementById("cantidadP").value = "";
       privado.checked = true;
@@ -402,6 +404,7 @@ function crearDivCompeticion() {
     <a href="#" id="linkChat${cant}" class="link-success2">Chat</a>
     <a href="#" id="linkResultados${cant}" class="link-success2">Establecer Resultados</a>
     <a href="#" id="linkClasificacion${cant}" class="link-success2">Clasificación</a>
+    <a href="#" id="linkAbandonar${cant}" class="link-success2">Abandonar</a>
   `;
   
   const chatContainer = document.createElement("div");
@@ -425,24 +428,24 @@ function crearDivCompeticion() {
   <br>
   <div class="partido">
     <h3>Partido 1</h3>
-    <div id="labelEquipoLocal1">Equipo Local:</div>
-    <input type="number" id="equipoLocal1" class="partidos" min="0" max="99" aria-labelledby="labelEquipoLocal1">
-    <div id="labelEquipoVisitante1">Equipo Visitante:</div>
-    <input type="number" id="equipoVisitante1" class="partidos" min="0" max="99" aria-labelledby="labelEquipoVisitante1">
+    <div id="labelEquipoLocal${cant}">Equipo Local:</div>
+    <input type="number" id="equipoLocal${cant}" class="partidos" min="0" max="99" aria-labelledby="labelEquipoLocal${cant}">
+    <div id="labelEquipoVisitante${cant}">Equipo Visitante:</div>
+    <input type="number" id="equipoVisitante${cant}" class="partidos" min="0" max="99" aria-labelledby="labelEquipoVisitante${cant}">
   </div>
   <div class="partido">
     <h3>Partido 2</h3>
-    <div id="labelEquipoLocal2">Equipo Local:</div>
-    <input type="number" id="equipoLocal2" class="partidos" min="0" max="99" aria-labelledby="labelEquipoLocal2">
-    <div id="labelEquipoVisitante2">Equipo Visitante:</div>
-    <input type="number" id="equipoVisitante2" class="partidos" min="0" max="99" aria-labelledby="labelEquipoVisitante2">
+    <div id="labelEquipoLocal${cant}">Equipo Local:</div>
+    <input type="number" id="equipoLocal${cant}" class="partidos" min="0" max="99" aria-labelledby="labelEquipoLocal${cant}">
+    <div id="labelEquipoVisitante${cant}">Equipo Visitante:</div>
+    <input type="number" id="equipoVisitante${cant}" class="partidos" min="0" max="99" aria-labelledby="labelEquipoVisitante${cant}">
   </div>
   <div class="partido">
     <h3>Partido 3</h3>
-    <div id="labelEquipoLocal3">Equipo Local:</div>
-    <input type="number" id="equipoLocal3" class="partidos" min="0" max="99" aria-labelledby="labelEquipoLocal3">
-    <div id="labelEquipoVisitante3">Equipo Visitante:</div>
-    <input type="number" id="equipoVisitante3" class="partidos" min="0" max="99" aria-labelledby="labelEquipoVisitante3">
+    <div id="labelEquipoLocal${cant}">Equipo Local:</div>
+    <input type="number" id="equipoLocal${cant}" class="partidos" min="0" max="99" aria-labelledby="labelEquipoLocal${cant}">
+    <div id="labelEquipoVisitante${cant}">Equipo Visitante:</div>
+    <input type="number" id="equipoVisitante${cant}" class="partidos" min="0" max="99" aria-labelledby="labelEquipoVisitante${cant}">
   </div>
   `;
 
@@ -718,4 +721,28 @@ function mandarMensajePredeterminado() {
 function mostrarNot(){
   ocultarTodo();
     divNot.classList.remove("hidden");
+}
+
+function abandonarCompe(nombreCompetencia) {
+  const confirmacion = confirm(`¿Estás seguro de abandonar la competición "${nombreCompetencia}"?`);
+  if (confirmacion) {
+      try {
+          const abandonado = listaCompetencias.abandonarCompeticion(nombreCompetencia);
+          if (abandonado) {
+              console.log(`Se abandonó exitosamente la competición "${nombreCompetencia}".`);
+              const divMisCompes = document.getElementById('misCompe');
+              const competicionAEliminar = divMisCompes.querySelector(`span:contains(${nombreCompetencia})`);
+              if (competicionAEliminar) {
+                  divMisCompes.removeChild(competicionAEliminar.previousElementSibling);
+                  divMisCompes.removeChild(competicionAEliminar); 
+              }
+          } else {
+              console.log(`La competición "${nombreCompetencia}" no se encontró en la lista.`);
+          }
+      } catch (error) {
+          console.error(error.message);
+      }
+  } else {
+      console.log(`Operación de abandono cancelada para la competición "${nombreCompetencia}".`);
+  }
 }
