@@ -1,0 +1,284 @@
+#paginaNombre {
+    background-color: white;
+}
+
+#nombre {
+    color: #198754;
+}
+
+
+
+.h1{
+    font-family: "Poppins", sans-serif;
+    font-weight: 900;
+    font-style: normal;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    margin: auto;
+    
+    
+}
+
+.menuPrincipal{
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    margin-top: 11.5%;
+}
+
+.campo{
+    background-color: rgb(252, 252, 252);
+    max-width: 375px;
+    width: 100%;
+    padding: 5px;
+    margin: 5px;
+    color: gray;
+    border-radius: 15px;
+    border: 1px solid #dddddd;
+    line-height: 15px;
+}
+
+.campoModoOscuro{
+    background-color: rgb(81, 81, 81);
+    max-width: 375px;
+    width: 100%;
+    padding: 5px;
+    margin: 5px;
+    color: gray;
+    border-radius: 15px;
+    border: 1px solid #dddddd;
+    line-height: 15px;
+}
+
+
+.b1{
+    font-family: "Poppins", sans-serif;
+    font-weight: 300;
+    align-items: center;
+    font-style: normal;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    margin: auto;
+}
+
+body.modo-obscuro {
+    background-color: #222222;
+    color: #ffffff;
+}
+
+#paginaNombre.modo-obscuro h1 {
+    background-color: #222222;
+}
+
+
+.menuLateral {
+    position: fixed;
+    height: 100%;
+    background-color: #198754;
+    color: #fff;
+    padding: 20px;
+}
+
+.botonMenu {
+    background-color: #198754;
+    border: none;
+    color: #ffffff;
+    font-size: 20px;
+}
+
+.btnMenuP {
+    width: 380px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.opcionesMenu a {
+    color: #fff;
+    margin-bottom: 30px;
+    text-decoration: none;
+}
+
+.link-success {
+    color: #ffffff !important;
+}
+
+.link-success2 {
+    color: #006B17;
+    text-decoration: none;
+}
+
+.link-success2-dark {
+    color: #00CC2C;
+    text-decoration: none;
+  }
+
+.div1{
+    margin: 1%;
+}
+
+#btn4 {
+    float: left; /* Float alinea el boton a la izquierda*/
+    margin-right: 100%; /* Para que el boton quede arriba de los inputs */
+}
+
+.mb-3 {
+    justify-content: center;
+}
+
+.div2 input,
+.div2 select {
+  margin-bottom: 10px;
+}
+
+.input-group-prepend {
+    width: 490px;
+}
+
+#unirseCompetencia {
+    padding: 40px;
+    width: 700px;
+    margin:auto;
+}
+
+.btnAjustes {
+    width: 300px;
+    margin-bottom: 18px;
+}
+
+.form-switch .form-check-input {
+    margin-left: 0.4em;
+    float: none;
+    margin-top: 0.25rem; 
+    background-color: rgb(255, 255, 255);
+}
+.form-check-input:checked {
+    background-color: #198754;
+    border-color: #198754;
+}
+
+.form-switch .form-check-label {
+    text-align: center;
+    }
+
+.img-thumbnail {
+    width: 120px;
+    height: auto;
+    margin-right: 30px;
+    margin-left: -250px;
+}
+#privado, #publico, #invitacion{
+    accent-color: green;
+}
+#perfil{
+padding: 50px;
+justify-items: center;
+}
+
+.table-dark-custom {
+    background-color: #222222 !important;
+    color: #ffffff;
+}
+
+#competicion {
+    color: #4F4F4F;
+}
+
+.ojoImg {
+    width: 20px;
+}
+
+#contraseñaToggle{
+    max-width: 375px;
+    padding: 5px;
+    border-radius: 15px;
+    border: 1px solid #dddddd;
+    line-height: 15px;
+}
+
+#textoContra{
+    margin-left: 50px;
+}
+
+.perfil2 {
+    text-align: center;
+    margin-left: 200px;
+    margin-top: -130px;
+    justify-content: center;
+  }
+
+  #perfil{
+    text-align: center;
+    margin-right: 200px;
+  }
+
+  #editarPerfilForm {
+    background-color: rgb(252, 252, 252);
+    max-width: 375px;
+    width: 100%;
+    padding: 5px;
+    margin: 5px auto; 
+    color: rgb(39, 39, 39);
+    border-radius: 15px;
+    border: 1px solid #dddddd;
+    line-height: 15px;
+}
+
+
+.partidos{
+    background-color: rgb(252, 252, 252);
+    max-width: 80px;
+    width: 100%;
+    padding: 5px;
+    margin: 5px;
+    color: gray;
+    border-radius: 15px;
+    border: 1px solid #dddddd;
+    line-height: 15px;
+}
+
+.chat-mensajes {
+    width: 100%;
+    height: 200px; 
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    flex-grow: 1; 
+    display: flex;
+    flex-direction: column; 
+    justify-content: flex-end;
+  }
+
+  .chat-input-container {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+
+  .competencia-container {
+  display: flex;
+  flex-wrap: wrap; 
+  gap: 10px;
+  justify-content: center; 
+  margin-bottom: 20px;
+  }
+
+/* Clases para manejar visibilidad */
+/*nota para patri: tuve que hacerlo asi porque el display="block" en el js 
+ me quitaba los estilos del css al pulsar el boton atras*/
+
+.hidden {
+    display: none;
+}
+
+.visible {
+    display: block;
+}
+
+

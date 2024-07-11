@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Proyecto 2023S1</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  <link href="style.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body class="b1">
+
+  <!-- SECCION MENU LATERAL -->
+  <div class="menuLateral mb-3">
+    <div>
+      <button class="botonMenu" id="botonVolver"> Volver</button>
+    </div>
+    <button class="botonMenu" id="menuDesplegable">☰</button>
+  <div class="hidden opcionesMenu" id="opc">
+        <a href="#misCompe" class="link-success" id="linkCompe">Mis competiciones</a>
+  </div>
+</div>
+<!-- FIN SECCION MENU LATERAL -->
+
+<!-- MENU PRINCIPAL -->
+  <div id="paginaNombre">
+    <h1 class="h1" id="nombre">PlayNow</h1>
+  </div>
+<div class="menuPrincipal"> 
+  <div class="div1">
+    <input type="button" value="Crear una competencia" class="btn btn-outline-success btnMenuP" id="btn1">
+    </div>
+  <div class="div1">
+    <input type="button" value="Unirse a una competencia" class="btn btn-outline-success btnMenuP" id="btn2">
+  </div>
+  <div class="div1">
+    <input type="button" value="Ajustes" class="btn btn-outline-success btnMenuP" id="btn3">
+  </div>
+</div>
+<!-- FIN MENU PRINCIPAL -->
+
+<!-- SECCION CREAR UNA COMPETENCIA -->
+  <div id="crearCompetencia" class="hidden">
+    <form id="crearCompetenciaForm">
+    <div class="div2 input-group mb-3">
+      <div class="input-group-prepend">
+    <label for="nombreC">Nombre de la competicion:</label>
+    <input type="text" id="nombreC" required class="campo">
+    <br>
+    <label for="cantidadP">Cantidad de participantes:</label>
+    <input type="number" id="cantidadP" min="2" max="1000" required class="campo">
+    <br>
+    <label for="competicion">Competicion</label>
+    <select name="competicion" id="competicion" class="campo">
+      <option value="Campeonato Uruguayo 2024	">Bundesliga</option>
+      <option value="Campeonato Uruguayo 2024	">Campeonato Uruguayo 2024</option>
+      <option value="Copa America 2024">Copa America 2024</option>
+      <option value="Copa CONMEBOL Libertadores">Copa CONMEBOL Libertadores</option>
+      <option value="Campeonato Uruguayo 2024	">LaLiga</option>
+      <option value="Campeonato Uruguayo 2024	">Premier League</option>
+      <option value="Campeonato Uruguayo 2024	">Serie A</option>
+      <option value="Campeonato Uruguayo 2024	">UEFA EURO 2024</option>
+      <option value="Campeonato Uruguayo 2024	">UEFA Champions League</option> 
+    </select>
+    <br>
+    <label for="privado">Privado</label>
+    <input type="radio" id="privado" name="opciones" checked value="privado" required class="radioBotones">
+    <label for="publico">Publico</label>
+    <input type="radio" id="publico" name="opciones" value="publico" required class="radioBotones">
+    <label for="invitacion">Con invitacion</label>
+    <input type="radio" id="invitacion" name="opciones" value="invitacion" required class="radioBotones">
+    <br>
+    <label for="textoContra" id="labelContra">Contraseña</label>
+    <br>
+    <input type="password" id="textoContra" required class="campo">
+    <button type="button" id="contraseñaToggle" class="btn btn-outline-success">
+      <img id="imagenOjo" src="/src/Imagenes/eye closed.png" alt="vercontra" class="ojoImg"> 
+    </button>
+    <br>
+    <button type="submit" class="btn btn-outline-success" id="btnEnviar">Crear Competencia</button>  
+    </div>
+  </div>
+  </form>
+  </div>
+  <!-- FIN SECCION CREAR UNA COMPETENCIA -->
+  
+  <!-- SECCION UNIRSE A UNA COMPETENCIA -->
+  <div id="unirseCompetencia" class="hidden">
+    <table id=tabla class="table">
+      <thead >
+        <tr>
+          <th scope="col">Nombre</th>
+          <th scope="col">Competicion</th>
+          <th scope="col">Miembros</th>
+          <th scope="col">Acceso</th>
+          <th scope="col">-</th>
+        </tr>
+      </thead>
+      <tbody id="cuerpoT">
+        <tr>
+          <td scope="row">Penca libertadores</th>
+          <td scope="row">Copa CONMEBOL Libertadores</td>
+          <td scope="row">11/1000</td>
+          <td>Publico</td>
+          <td><input type="button" value="Unirse" id="btnUnirse1" class="btnUnirse btn btn-outline-success"></td>
+        </tr>
+        <tr>
+          <td scope="row">Fulbo</th>
+          <td scope="row">Campeonato Uruguayo 2024</td>
+          <td scope="row">53/100</td>
+          <td>Con invitacion</td>
+          <td><input type="button" value="Unirse" id="btnUnirse2" class="btn btn-outline-success"></td>
+        </tr>
+        <tr>
+          <td scope="row">Copa america</td>
+          <td scope="row">Copa America 2024</td>
+          <td scope="row">6/20</td>
+          <td>Privado</td>  
+          <td><input type="button" value="Unirse" id="btnUnirse3" class="btn btn-outline-success"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div id="divTodoC" class="hidden mb-3 competicion-elemento">
+    <div id="divMenu" class="mb-3">
+    <a href="#" id="linkChat" class="link-success2">Chat</a>
+    <a href="#" id="linkResultados" class="link-success2">Establecer Resultados</a>
+    <a href="#" id="linkClasificacion" class="link-success2">Clasificación</a>
+  </div>
+  <div id="adivinarPartido" class="mb-3 competicion-elemento">
+    <h2>Establecer resultados</h2>
+    <div class="partido">
+   <h3>Partido 1</h3>
+   <label for="equipoLocal1">Equipo Local:</label> 
+   <input type="number" id="equipoLocal1" class="partidos" min="0" max="99">
+   <label for="equipoVisitante1">Equipo Visitante:</label>
+   <input type="number" id="equipoVisitante1" class="partidos" min="0" max="99">
+ </div>
+ <div class="partido">
+   <h3>Partido 2</h3>
+   <label for="equipoLocal2">Equipo Local: </label>
+   <input type="number" id="equipoLocal2" class="partidos" min="0" max="99">
+   <label for="equipoVisitante2">Equipo Visitante:</label>
+   <input type="number" id="equipoVisitante2" class="partidos" min="0" max="99">
+ </div>
+ <div class="partido">
+   <h3>Partido 3</h3>
+   <label for="equipoLocal3">Equipo Local:</label> 
+   <input type="number" id="equipoLocal3" class="partidos" min="0" max="99">
+   <label for="equipoVisitante3">Equipo Visitante:</label> 
+   <input type="number" id="equipoVisitante3" class="partidos" min="0" max="99">
+ </div>
+</div>
+<div id="chatMensajes" class="hidden competicion-elemento">
+<div id="chatM"class="mb-3 chat-mensajes"></div>
+<div class = "chat-input-container">
+<label for="mensajeChat">‎</label>
+<input type="text" id="mensajeChat" class="campo" placeholder="Escribe un mensaje">
+<button id="botonMsg" class="btn btn-outline-success">Enviar</button>
+</div>
+</div>
+  <div>
+<div id="tablaDiv" class="mb-3 hidden">
+  <table id=tabla class="table">
+    <thead>
+      <tr>
+        <th>Jugador</th>
+        <th>Puntos</th>
+      </tr>
+    </thead>
+    <tbody id="cuerpoT">
+      <tr>
+        <td scope="row">Patricio</th>
+        <td scope="row">100</td>
+      </tr>
+    <tr>
+      <td scope="row">Pedro</th>
+      <td scope="row">53</td>
+    </tr>
+    <tr>
+      <td scope="row">Jose</th>
+      <td scope="row">36</td>
+    </tr>
+    <tr>
+      <td scope="row">Gonzalo</th>
+      <td scope="row">32</td>
+    </tr>
+    <tr>
+      <td scope="row">Juan</th>
+      <td scope="row">21</td>
+    </tr>
+    <tr>
+      <td scope="row">Diego</th>
+      <td scope="row">20</td>
+    </tr>
+    <tr>
+      <td scope="row">Ignacio</th>
+      <td scope="row">18</td>
+    </tr>
+    <tr>
+      <td scope="row">Samuel</th>
+      <td scope="row">13</td>
+    </tr>
+    <tr>
+      <td scope="row">Pepe</th>
+      <td scope="row">10</td>
+    </tr>
+    <tr>
+      <td scope="row">Luciano</th>
+      <td scope="row">0</td>
+      </tr>
+    <tr>
+      <td scope="row">Mati</th>
+      <td scope="row">0</td>
+      </tr>
+      <tr>
+        <td scope="row">Usuario</th>
+        <td scope="row">0</td>
+        </tr>
+    </tbody>
+    </table>
+     </div>
+    </div>
+  </div>
+   <!-- FIN SECCION UNIRSE A UNA COMPETENCIA -->
+
+    <!-- SECCION AJUSTES -->
+  <div id="ajustesD" class="hidden">
+    <div>
+      <input type="button" value="Perfil" class="btn btn-outline-success btnAjustes" id="btnPerfil">
+    </div>
+    <div>
+      <input type="button" value="Notificaciones" class="btn btn-outline-success btnAjustes" id="btnNotis">
+    </div>
+    <div class="form-check form-switch">
+      <label class="form-check-label" for="modoO">Modo oscuro</label>
+      <input class="form-check-input" type="checkbox" id="modoO">
+    </div>
+</div>
+
+<div id="divNotificaciones" class="hidden mb-3">
+  <p>No tienes ninguna notifiacion</p>
+</div>
+
+<div id="perfil" class="hidden">
+  <img src="/src/Imagenes/icono.jpg" alt="Icono usuario" class="img-thumbnail">
+  <div id="infoUsuario" class="perfil2">
+      <label>Nombre de usuario: </label>
+      <span id="nombreUsuario">Usuario</span>
+      <br>
+      <label>Edad: </label>
+      <span id="edadU">20</span>
+      <br>
+      <label>País: </label>
+      <span id="pais">Uruguay</span>
+      <br>
+      <label>Correo Electrónico: </label>
+      <span id="correoUsuario">usuario@example.com</span>
+      <br>
+      <label>Estadísticas:</label>
+        <li>Competencias Participadas: <span id="competenciasParticipadas">0</span></li>
+        <li>Competencias Ganadas: <span id="competenciasGanadas">0</span></li>
+      </div>
+      <button id="editarPerfil" class="btn btn-outline-success">Editar Perfil</button>
+</div>
+
+<div id="editarPerfilForm" class="hidden">
+  <form id="editarDatosForm">
+    <label for="selectPaisUsuario">País: </label>
+    <select id="selectPaisUsuario" class="form-select" required>
+      <option value="Argentina">Argentina</option>
+      <option value="Brasil">Brasil</option>
+      <option value="Chile">Chile</option>
+      <option value="Colombia">Colombia</option>
+      <option value="México">México</option>
+      <option value="Perú">Perú</option>
+      <option value="Uruguay">Uruguay</option>
+      <option value="Venezuela">Venezuela</option>
+    </select>
+    <br>
+    <label for="inputCorreoUsuario">Correo Electrónico: </label>
+    <input type="email" id="inputCorreoUsuario" class="campo" required>
+    <br>
+    <label for="inputEdadUsuario">Edad: </label>
+    <input type="number" id="inputEdadUsuario" class="campo" min="18" max="80" required>
+    <br>
+  <button type="submit" id="guardarPerfil" class="btn btn-outline-success">Guardar</button>
+  </form>
+</div>
+
+<!-- FIN SECCION AJUSTES -->
+
+<!-- SECCION MIS COMPETENCIAS -->
+<div id="misCompe" class="hidden divMisCompes mb-3">
+  
+</div> 
+
+<!-- FIN SECCION MIS COMPETENCIAS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+    crossorigin="anonymous"></script>
+  <script src="main.js" type="module"></script>
+</body>
+</html>
