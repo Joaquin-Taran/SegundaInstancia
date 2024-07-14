@@ -50,4 +50,11 @@ describe("competicion", () => {
         expect(comp.verificarSiEsta("Usuario2")).toBe(true); // Verificar que el usuario está en la competición
         expect(comp.verificarSiEsta("Usuario3")).toBe(false); // Verificar que el usuario no está en la competición
     });
+
+    test("eliminar un usuario", () => {
+        comp.addUsuario("usuario1");
+        expect(comp.eliminarUsuario("usuario1")).toBe(true);
+        expect(comp.eliminarUsuario("usuario2")).toBe(false);
+        
+    });
 });
