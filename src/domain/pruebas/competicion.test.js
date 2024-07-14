@@ -1,4 +1,4 @@
-const { competicion } = require('../competicion');
+import { competicion } from '../competicion';
 
 describe("competicion", () => {
     let comp;

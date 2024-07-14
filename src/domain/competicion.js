@@ -51,7 +51,7 @@ export class competicion {
 
     addUsuario(user) {
         // Buscar en el array #usuarios
-        const usuarioExistente = this.#usuarios.find(u => u.getNombreUsuario() === user);
+        const usuarioExistente = this.#usuarios.find(u => u === user);
         
         if (usuarioExistente) {
             throw new Error(`No se pudo agregar el usuario con el nombre: "${user}", ese nombre ya se ha registrado.`);
