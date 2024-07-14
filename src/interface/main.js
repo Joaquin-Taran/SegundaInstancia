@@ -100,6 +100,42 @@ linkClas.addEventListener("click", mostrarClas);
 botonMsgP.addEventListener("click", mandarMensajePredeterminado);
 botonNot.addEventListener("click", mostrarNot);
 document.addEventListener("DOMContentLoaded", verificarCompetencia);
+document.addEventListener('DOMContentLoaded', () => {
+  const partidos = document.querySelectorAll('.partido');
+
+  partidos.forEach(partido => {
+      const editButton = partido.querySelector('.btnEdit');
+      const confirmButton = partido.querySelector('.btnConfirm');
+      const resultadoLabel = partido.querySelector('label');
+      const inputLocal = partido.querySelector('.inputLocal');
+      const inputVisitante = partido.querySelector('.inputVisitante');
+
+      editButton.addEventListener('click', () => {
+          resultadoLabel.classList.add('d-none');
+          editButton.classList.add('d-none');
+          inputLocal.classList.remove('d-none');
+          inputVisitante.classList.remove('d-none');
+          confirmButton.classList.remove('d-none');
+      });
+
+      confirmButton.addEventListener('click', () => {
+          if (parseInt(inputLocal.value) >= 0 && parseInt(inputLocal.value) <= 99 && parseInt(inputVisitante.value) >= 0 && parseInt(inputVisitante.value) <= 99) {
+            resultadoLabel.textContent = `${inputLocal.value} - ${inputVisitante.value}`;
+            resultadoLabel.classList.remove('d-none');
+            editButton.classList.remove('d-none');
+            inputLocal.classList.add('d-none');
+            inputVisitante.classList.add('d-none');
+            confirmButton.classList.add('d-none');
+            inputLocal.value="";
+            inputVisitante.value="";
+        } else {
+          alert("El resultado debe ser menor o igual a 99 y mayor o igual a 0");
+          inputLocal.value="";
+          inputVisitante.value="";
+        }
+      });
+  });
+});
 
 
 
@@ -399,31 +435,28 @@ function elementosCompe() {
 
 
 function crearDivCompeticion() {
-
   const todo = document.createElement("div");
   todo.id = `divCompeTodo${cant}`;
   todo.classList.add("hidden", "mb-3", "competicion-elemento");
 
   const menuContainer = document.createElement("div");
   menuContainer.id = `menu${cant}`;
-  menuContainer.classList.add("hidden");
-  menuContainer.classList.add("mb-3");
+  menuContainer.classList.add("hidden", "mb-3");
   menuContainer.innerHTML = `
     <a href="#" id="linkChat${cant}" class="link-success2">Chat</a>
     <a href="#" id="linkResultados${cant}" class="link-success2">Establecer Resultados</a>
     <a href="#" id="linkClasificacion${cant}" class="link-success2">Clasificación</a>
   `;
-  
+
   const chatContainer = document.createElement("div");
   chatContainer.id = `chat${cant}`;
   chatContainer.classList.add("hidden", "mb-3", "competicion-elemento");
   chatContainer.innerHTML = `
-    <div id="chatMensajes${cant}" class="mb-3 chat-mensajes">
-    </div>
+    <div id="chatMensajes${cant}" class="mb-3 chat-mensajes"></div>
     <div class="chat-input-container">
-    <label for="mensajeChat${cant}">‎</label>
-    <input type="text" id="mensajeChat${cant}" class="campo" placeholder="Escribe un mensaje">
-    <button id="botonMsg${cant}" class="btn btn-outline-success">Enviar</button>
+      <label for="mensajeChat${cant}">‎</label>
+      <input type="text" id="mensajeChat${cant}" class="campo" placeholder="Escribe un mensaje">
+      <button id="botonMsg${cant}" class="btn btn-outline-success">Enviar</button>
     </div>
   `;
 
@@ -431,49 +464,61 @@ function crearDivCompeticion() {
   adivinarContainer.id = `adivinarResultados${cant}`;
   adivinarContainer.classList.add("hidden", "mb-3", "competicion-elemento");
   adivinarContainer.innerHTML = `
-<h2>Establecer resultados</h2>
-  <br>
-  <div class="partido">
-    <h3>Partido 1</h3>
-    <div id="labelEquipoLocal${cant}">Equipo Local:</div>
-    <input type="number" id="equipoLocal${cant}" class="partidos" min="0" max="99" aria-labelledby="labelEquipoLocal${cant}">
-    <div id="labelEquipoVisitante${cant}">Equipo Visitante:</div>
-    <input type="number" id="equipoVisitante${cant}" class="partidos" min="0" max="99" aria-labelledby="labelEquipoVisitante${cant}">
-  </div>
-  <div class="partido">
-    <h3>Partido 2</h3>
-    <div id="labelEquipoLocal${cant}">Equipo Local:</div>
-    <input type="number" id="equipoLocal${cant}" class="partidos" min="0" max="99" aria-labelledby="labelEquipoLocal${cant}">
-    <div id="labelEquipoVisitante${cant}">Equipo Visitante:</div>
-    <input type="number" id="equipoVisitante${cant}" class="partidos" min="0" max="99" aria-labelledby="labelEquipoVisitante${cant}">
-  </div>
-  <div class="partido">
-    <h3>Partido 3</h3>
-    <div id="labelEquipoLocal${cant}">Equipo Local:</div>
-    <input type="number" id="equipoLocal${cant}" class="partidos" min="0" max="99" aria-labelledby="labelEquipoLocal${cant}">
-    <div id="labelEquipoVisitante${cant}">Equipo Visitante:</div>
-    <input type="number" id="equipoVisitante${cant}" class="partidos" min="0" max="99" aria-labelledby="labelEquipoVisitante${cant}">
-  </div>
+    <h2>Establecer resultados</h2>
+    <br>
+    <div class="partido">
+      <h3>Partido 1</h3>
+      <label id="resultado1-${cant}">0 - 0</label>
+      <br>
+      <input type="button" value="Editar" class="btnEdit btn btn-outline-success">
+        <label for="inputLocal1-${cant}" class="d-none">Local</label>
+      <input type="number" id="equipoLocal1-${cant}" class="inputLocal form-control d-inline d-none" style="width: 60px;" min="0" max="99">
+      <label for="inputVisitante1-${cant}" class="d-none">Visitante</label>
+      <input type="number" id="equipoVisitante1-${cant}" class="inputVisitante form-control d-inline d-none" style="width: 60px;" min="0" max="99">
+      <input type="button" value="Confirmar" class="btnConfirm btn btn-outline-primary d-none">
+    </div>
+    <div class="partido">
+      <h3>Partido 2</h3>
+      <label id="resultado2-${cant}">0 - 0</label>
+      <br>
+      <input type="button" value="Editar" class="btnEdit btn btn-outline-success">
+      <label for="inputLocal2-${cant}" class="d-none">Local</label>
+      <input type="number" id="equipoLocal2-${cant}" class="inputLocal form-control d-inline d-none" style="width: 60px;" min="0" max="99">
+      <label for="inputVisitante2-${cant}" class="d-none">Visitante</label>
+      <input type="number" id="equipoVisitante2-${cant}" class="inputVisitante form-control d-inline d-none" style="width: 60px;" min="0" max="99">
+      <input type="button" value="Confirmar" class="btnConfirm btn btn-outline-primary d-none">
+    </div>
+    <div class="partido">
+      <h3>Partido 3</h3>
+      <label id="resultado3-${cant}">0 - 0</label>
+      <br>
+      <input type="button" value="Editar" class="btnEdit btn btn-outline-success">
+      <label for="inputLocal3-${cant}" class="d-none">Local</label>
+      <input type="number" id="equipoLocal3-${cant}" class="inputLocal form-control d-inline d-none" style="width: 60px;" min="0" max="99">
+      <label for="inputVisitante3-${cant}" class="d-none">Visitante</label>
+      <input type="number" id="equipoVisitante3-${cant}" class="inputVisitante form-control d-inline d-none" style="width: 60px;" min="0" max="99">
+      <input type="button" value="Confirmar" class="btnConfirm btn btn-outline-primary d-none">
+    </div>
   `;
 
   const tablaClasificacion = document.createElement("div");
-  tablaClasificacion.id = `divTabla${cant}`
+  tablaClasificacion.id = `divTabla${cant}`;
   tablaClasificacion.classList.add("hidden", "mb-3", "competicion-elemento");
   tablaClasificacion.innerHTML = `
-  <div class="mb-3">
-  <table id=tabla class="table">
-    <thead>
-      <tr>
-        <th>Jugador</th>
-        <th>Puntos</th>
-      </tr>
-    </thead>
-    <tbody id="cuerpoT">
-    <td scope="row">Usuario</th>
-    <td scope="row">0</td>
-    </tbody>
-    </table>
-     </div>
+    <div class="mb-3">
+      <table id="tabla" class="table">
+        <thead>
+          <tr>
+            <th>Jugador</th>
+            <th>Puntos</th>
+          </tr>
+        </thead>
+        <tbody id="cuerpoT">
+          <td scope="row">Usuario</td>
+          <td scope="row">0</td>
+        </tbody>
+      </table>
+    </div>
   `;
 
   document.body.appendChild(todo);
@@ -482,10 +527,9 @@ function crearDivCompeticion() {
   todo.appendChild(adivinarContainer);
   todo.appendChild(tablaClasificacion);
 
-
-  let botonMs = document.getElementById(`botonMsg${cant}`)
+  let botonMs = document.getElementById(`botonMsg${cant}`);
   botonMs.addEventListener("click", mandarMensaje);
-  
+
   let link1 = document.getElementById(`linkChat${cant}`);
   let link2 = document.getElementById(`linkResultados${cant}`);
   let link3 = document.getElementById(`linkClasificacion${cant}`);
@@ -515,13 +559,49 @@ function crearDivCompeticion() {
     tablaClasificacion.querySelector('table').classList.add("table-dark-custom");
     botonMs.classList.remove("btn-outline-success");
     botonMs.classList.add("btn-success");
-    let link1 = document.getElementById(`linkChat${cant}`)
-    let link2 = document.getElementById(`linkResultados${cant}`)
-    let link3 = document.getElementById(`linkClasificacion${cant}`)
+    let link1 = document.getElementById(`linkChat${cant}`);
+    let link2 = document.getElementById(`linkResultados${cant}`);
+    let link3 = document.getElementById(`linkClasificacion${cant}`);
     link1.classList.add("link-success2-dark");
     link2.classList.add("link-success2-dark");
     link3.classList.add("link-success2-dark");
   }
+
+  // Add event listeners for Edit and Confirm buttons
+  const partidos = adivinarContainer.querySelectorAll('.partido');
+  partidos.forEach((partido, index) => {
+    const editButton = partido.querySelector('.btnEdit');
+    const confirmButton = partido.querySelector('.btnConfirm');
+    const resultadoLabel = partido.querySelector(`label[id^="resultado"]`);
+    const inputLocal = partido.querySelector('.inputLocal');
+    const inputVisitante = partido.querySelector('.inputVisitante');
+
+    editButton.addEventListener('click', () => {
+      resultadoLabel.classList.add('d-none');
+      editButton.classList.add('d-none');
+      inputLocal.classList.remove('d-none');
+      inputVisitante.classList.remove('d-none');
+      confirmButton.classList.remove('d-none');
+    });
+
+    confirmButton.addEventListener('click', () => {
+
+      if (parseInt(inputLocal.value) >= 0 && parseInt(inputLocal.value) <= 99 && parseInt(inputVisitante.value) >= 0 && parseInt(inputVisitante.value) <= 99) {
+        resultadoLabel.textContent = `${inputLocal.value} - ${inputVisitante.value}`;
+        resultadoLabel.classList.remove('d-none');
+        editButton.classList.remove('d-none');
+        inputLocal.classList.add('d-none');
+        inputVisitante.classList.add('d-none');
+        confirmButton.classList.add('d-none');
+        inputLocal.value="";
+        inputVisitante.value="";
+      } else {
+        alert("El resultado debe ser menor o igual a 99 y mayor o igual a 0");
+          inputLocal.value="";
+          inputVisitante.value="";
+      }
+    });
+  });
 }
 
 
@@ -619,22 +699,22 @@ function actualizarDatos() {
                 const usuarioActual = usuario1.getNombreUsuario();
                 if (competicionEnLista.verificarSiEsta(usuarioActual)) {
                     alert(`El usuario "${usuarioActual}" ya está inscrito en la competición "${nombreCompeticion}".`);
-                } else {
+                }else if (event.target.id === 'btnUnirse1') {
+                      elementosCompePredeterminado(); 
+                      const totalJugadores = competicionEnLista.getCantJugadores();
+                      const celdaMiembros = fila.querySelector('td:nth-child(3)');
+                      competicionEnLista.addUsuario(usuarioActual);
+                      celdaMiembros.textContent = `12/${totalJugadores}`;
+                      alert(`Se ha unido al usuario "${usuarioActual}" a la competición "${nombreCompeticion}".`);
+                  }else {
                     alert(`Se ha unido al usuario "${usuarioActual}" a la competición "${nombreCompeticion}".`);
                     competicionEnLista.addUsuario(usuarioActual);
                     nombreC.value = `${nombreCompeticion}`;
                     elementosCompe()
-
-                    if (event.target.id === 'btnUnirse1') {
-                      elementosCompePredeterminado(); 
-                      const totalJugadores = competicionEnLista.getCantJugadores();
-                      const celdaMiembros = fila.querySelector('td:nth-child(3)');
-                      celdaMiembros.textContent = `12/${totalJugadores}`;
+                    nombreC.value = "";
                   }
-                  nombreC.value = "";
                 }
             } 
-        }
     });
   }
 
@@ -772,3 +852,4 @@ function abandonarCompe(buttonElement) {
     console.log(`Operación de abandono cancelada para la competición "${nombreCompetencia}".`);
   }
 }
+

@@ -135,33 +135,42 @@
   </div>
   <div id="adivinarPartido" class="mb-3 competicion-elemento">
     <h2>Establecer resultados</h2>
-    <div class="partido">
-   <h3>Partido 1</h3>
-   <label for="equipoLocal1">Equipo Local:</label> 
-   <input type="number" id="equipoLocal1" class="partidos" min="0" max="99">
-   <label for="equipoVisitante1">Equipo Visitante:</label>
-   <input type="number" id="equipoVisitante1" class="partidos" min="0" max="99">
-   <br>
-   <input type="button" value="Editar" id="btnEdit1" class="btnUnirse btn btn-outline-success">
- </div>
- <div class="partido">
-   <h3>Partido 2</h3>
-   <label for="equipoLocal2">Equipo Local: </label>
-   <input type="number" id="equipoLocal2" class="partidos" min="0" max="99">
-   <label for="equipoVisitante2">Equipo Visitante:</label>
-   <input type="number" id="equipoVisitante2" class="partidos" min="0" max="99">
-   <br>
-   <input type="button" value="Editar" id="btnEdit2" class="btnUnirse btn btn-outline-success">
- </div>
- <div class="partido">
-   <h3>Partido 3</h3>
-   <label for="equipoLocal3">Equipo Local:</label> 
-   <input type="number" id="equipoLocal3" class="partidos" min="0" max="99">
-   <label for="equipoVisitante3">Equipo Visitante:</label> 
-   <input type="number" id="equipoVisitante3" class="partidos" min="0" max="99">
-   <br>
-   <input type="button" value="Editar" id="btnEdit3" class="btnUnirse btn btn-outline-success">
- </div>
+    <div class="partido" data-id="1">
+        <h3>Partido 1</h3>
+        <label id="resultado1">0 - 0</label>
+        <br>
+        <input type="button" value="Editar" class="btnEdit btn btn-outline-success">
+        <label for="inputLocal1" class="d-none">Local</label>
+        <input id="inputLocal1" type="number" class="inputLocal form-control d-inline d-none" style="width: 60px;" min="0" max="99">
+        <label for="inputVisitante1" class="d-none">Visitante</label>
+        <input id="inputVisitante1" type="number" class="inputVisitante form-control d-inline d-none" style="width: 60px;" min="0" max="99">
+        <input type="button" value="Confirmar" class="btnConfirm btn btn-outline-primary d-none">
+        <div class="alert alert-danger d-none" role="alert">Los valores deben estar entre 0 y 99.</div>
+    </div>
+    <div class="partido" data-id="2">
+        <h3>Partido 2</h3>
+        <label id="resultado2">0 - 0</label>
+        <br>
+        <input type="button" value="Editar" class="btnEdit btn btn-outline-success">
+        <label for="inputLocal2" class="d-none">Local</label>
+        <input id="inputLocal2" type="number" class="inputLocal form-control d-inline d-none" style="width: 60px;" min="0" max="99">
+        <label for="inputVisitante2" class="d-none">Visitante</label>
+        <input id="inputVisitante2" type="number" class="inputVisitante form-control d-inline d-none" style="width: 60px;" min="0" max="99">
+        <input type="button" value="Confirmar" class="btnConfirm btn btn-outline-primary d-none">
+        <div class="alert alert-danger d-none" role="alert">Los valores deben estar entre 0 y 99.</div>
+    </div>
+    <div class="partido" data-id="3">
+        <h3>Partido 3</h3>
+        <label id="resultado3">0 - 0</label>
+        <br>
+        <input type="button" value="Editar" class="btnEdit btn btn-outline-success">
+        <label for="inputLocal3" class="d-none">Local</label>
+        <input id="inputLocal3" type="number" class="inputLocal form-control d-inline d-none" style="width: 60px;" min="0" max="99">
+        <label for="inputVisitante3" class="d-none">Visitante</label>
+        <input id="inputVisitante3" type="number" class="inputVisitante form-control d-inline d-none" style="width: 60px;" min="0" max="99">
+        <input type="button" value="Confirmar" class="btnConfirm btn btn-outline-primary d-none">
+        <div class="alert alert-danger d-none" role="alert">Los valores deben estar entre 0 y 99.</div>
+    </div>
 </div>
 <div id="chatMensajes" class="hidden competicion-elemento">
 <div id="chatM"class="mb-3 chat-mensajes"></div>
