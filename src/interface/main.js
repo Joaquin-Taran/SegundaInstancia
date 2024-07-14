@@ -367,6 +367,15 @@ function elementosCompe() {
       adivinarPartido.classList.remove("hidden");
   });
 
+  let botonAbandonar = document.createElement("button");
+  botonAbandonar.textContent = "Abandonar";
+  botonAbandonar.setAttribute("type", "button");
+  botonAbandonar.setAttribute("value", "Abandonar");
+  botonAbandonar.setAttribute("class", "btn btn-outline-success");
+  botonAbandonar.addEventListener("click", function(){
+    abandonarCompe(botonAbandonar);
+  });
+
   // Modificar estilos si el modo oscuro está activado
   if (modoOs.checked) {
     botonCompetencia.classList.remove("btn-outline-success");
@@ -379,6 +388,7 @@ function elementosCompe() {
 
   competenciaContainer.appendChild(descripcionC);
   competenciaContainer.appendChild(botonCompetencia);
+  competenciaContainer.appendChild(botonAbandonar);
 
   let contenedorCompetencias = document.getElementById("misCompe");
 
@@ -402,7 +412,6 @@ function crearDivCompeticion() {
     <a href="#" id="linkChat${cant}" class="link-success2">Chat</a>
     <a href="#" id="linkResultados${cant}" class="link-success2">Establecer Resultados</a>
     <a href="#" id="linkClasificacion${cant}" class="link-success2">Clasificación</a>
-    <a href="#" id="linkAbandonar${cant}" class="link-success2">Abandonar</a>
   `;
   
   const chatContainer = document.createElement("div");
@@ -613,6 +622,8 @@ function actualizarDatos() {
                 } else {
                     alert(`Se ha unido al usuario "${usuarioActual}" a la competición "${nombreCompeticion}".`);
                     competicionEnLista.addUsuario(usuarioActual);
+                    nombreC.value = `${nombreCompeticion}`;
+                    elementosCompe()
 
                     if (event.target.id === 'btnUnirse1') {
                       elementosCompePredeterminado(); 
@@ -620,6 +631,7 @@ function actualizarDatos() {
                       const celdaMiembros = fila.querySelector('td:nth-child(3)');
                       celdaMiembros.textContent = `12/${totalJugadores}`;
                   }
+                  nombreC.value = "";
                 }
             } 
         }
