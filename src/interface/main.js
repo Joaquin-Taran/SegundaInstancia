@@ -476,6 +476,7 @@ function crearDivCompeticion() {
       <label for="inputVisitante1-${cant}" class="d-none">Visitante</label>
       <input type="number" id="equipoVisitante1-${cant}" class="inputVisitante form-control d-inline d-none" style="width: 60px;" min="0" max="99">
       <input type="button" value="Confirmar" class="btnConfirm btn btn-outline-primary d-none">
+      <p>05/08/2024</p>
     </div>
     <div class="partido">
       <h3>Partido 2</h3>
@@ -487,6 +488,7 @@ function crearDivCompeticion() {
       <label for="inputVisitante2-${cant}" class="d-none">Visitante</label>
       <input type="number" id="equipoVisitante2-${cant}" class="inputVisitante form-control d-inline d-none" style="width: 60px;" min="0" max="99">
       <input type="button" value="Confirmar" class="btnConfirm btn btn-outline-primary d-none">
+      <p>28/07/2024</p>
     </div>
     <div class="partido">
       <h3>Partido 3</h3>
@@ -498,6 +500,7 @@ function crearDivCompeticion() {
       <label for="inputVisitante3-${cant}" class="d-none">Visitante</label>
       <input type="number" id="equipoVisitante3-${cant}" class="inputVisitante form-control d-inline d-none" style="width: 60px;" min="0" max="99">
       <input type="button" value="Confirmar" class="btnConfirm btn btn-outline-primary d-none">
+      <p>30/07/2024</p>
     </div>
   `;
 
