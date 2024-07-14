@@ -12,19 +12,19 @@ console.log(usuario1.getNombreUsuario());
 
 // Añadir las 3 competiciones que ya estan por default en la tabla
 try {
-  let compe1 = new competicion();
+  var compe1 = new competicion();
   compe1.setNombreCompeticion("Penca libertadores");
   compe1.setCantJugadores(1000);
   compe1.setTipoPrivacidad("Publico");
   listaCompes.add(compe1);
 
-  let compe2 = new competicion();
+  var compe2 = new competicion();
   compe2.setNombreCompeticion("Fulbo");
   compe2.setCantJugadores(100);
   compe2.setTipoPrivacidad("Con invitacion");
   listaCompes.add(compe2);
 
-  let compe3 = new competicion();
+  var compe3 = new competicion();
   compe3.setNombreCompeticion("Copa america");
   compe3.setCantJugadores(20);
   compe3.setTipoPrivacidad("Privado");
@@ -76,7 +76,6 @@ const linkClas = document.getElementById("linkClasificacion");
 const botonMsgP = document.getElementById("botonMsg");
 const botonNot = document.getElementById("btnNotis");
 const divNot = document.getElementById("divNotificaciones");
-const linkAban = document.getElementById("linkAbandonar");
 
 menuDesp.addEventListener("click", desplegarMenu);
 crear.addEventListener("click", crearCompe);
@@ -100,7 +99,6 @@ linkRes.addEventListener("click", mostrarRes);
 linkClas.addEventListener("click", mostrarClas);
 botonMsgP.addEventListener("click", mandarMensajePredeterminado);
 botonNot.addEventListener("click", mostrarNot);
-linkAban.addEventListener("click", abandonarCompe);
 document.addEventListener("DOMContentLoaded", verificarCompetencia);
 
 
@@ -658,6 +656,14 @@ function actualizarDatos() {
         menu.classList.remove("hidden");
         adivinarPartido.classList.remove("hidden");
     });
+    let botonAbandonar = document.createElement("button");
+    botonAbandonar.textContent = "Abandonar";
+    botonAbandonar.setAttribute("type", "button");
+    botonAbandonar.setAttribute("value", "Abandonar");
+    botonAbandonar.setAttribute("class", "btn btn-outline-success");
+    botonAbandonar.addEventListener("click", function(){
+      abandonarCompe(botonAbandonar);
+    });
 
     // Crear un contenedor para cada compe
     let competenciaContainer = document.createElement("div");
@@ -666,6 +672,7 @@ function actualizarDatos() {
     // Agregar elementos al contenedor de la compe 
     competenciaContainer.appendChild(descripcionC);
     competenciaContainer.appendChild(botonCompetencia);
+    competenciaContainer.appendChild(botonAbandonar);
 
     // Obtener el contenedor donde se van a agregar todas las compes
     let contenedorCompetencias = document.getElementById("misCompe");
@@ -723,26 +730,33 @@ function mostrarNot(){
     divNot.classList.remove("hidden");
 }
 
-function abandonarCompe(nombreCompetencia) {
+function abandonarCompe(buttonElement) {
+  const divCompetencia = buttonElement.parentElement; // Obtener el div padre del botón
+  const labelCompetencia = divCompetencia.querySelector('label'); // Encontrar el label dentro del div
+  const nombreCompetencia = labelCompetencia.textContent.trim(); // Obtener el nombre de la competencia
+  const competiciones = listaCompes.getCompe();
+  
   const confirmacion = confirm(`¿Estás seguro de abandonar la competición "${nombreCompetencia}"?`);
   if (confirmacion) {
-      try {
-          const abandonado = listaCompetencias.abandonarCompeticion(nombreCompetencia);
-          if (abandonado) {
-              console.log(`Se abandonó exitosamente la competición "${nombreCompetencia}".`);
-              const divMisCompes = document.getElementById('misCompe');
-              const competicionAEliminar = divMisCompes.querySelector(`span:contains(${nombreCompetencia})`);
-              if (competicionAEliminar) {
-                  divMisCompes.removeChild(competicionAEliminar.previousElementSibling);
-                  divMisCompes.removeChild(competicionAEliminar); 
-              }
-          } else {
-              console.log(`La competición "${nombreCompetencia}" no se encontró en la lista.`);
-          }
-      } catch (error) {
-          console.error(error.message);
+    try {
+      let abandonado = false;
+      for (let competicion of competiciones) {
+        if (competicion.getNombreCompeticion() === nombreCompetencia) {
+          abandonado = competicion.eliminarUsuario(usuario1.getNombreUsuario());
+          break;
+        }
       }
+
+      if (abandonado) {
+        console.log(`Se abandonó exitosamente la competición "${nombreCompetencia}".`);
+        divCompetencia.parentElement.removeChild(divCompetencia); 
+      } else {
+        console.log(`El usuario no está inscrito en la competición "${nombreCompetencia}".`);
+      }
+    } catch (error) {
+      console.error(error.message);
+    }
   } else {
-      console.log(`Operación de abandono cancelada para la competición "${nombreCompetencia}".`);
+    console.log(`Operación de abandono cancelada para la competición "${nombreCompetencia}".`);
   }
 }

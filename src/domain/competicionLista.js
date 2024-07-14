@@ -23,14 +23,4 @@ export class competicionLista{
     encontrarCompeticion(nombre){
         return this.#listaCompe.find((c) => c.getNombreCompeticion() === nombre);
     }
-
-    abandonarCompeticion(nombre) {
-        const index = this.#listaCompe.findIndex((c) => c.getNombreCompeticion() === nombre);
-        if (index !== -1) {
-            this.#listaCompe.splice(index, 1);
-            return true; // Indica que se abandonó exitosamente
-        } else {
-            return false; // Indica que la competición no se encontró
-        }
-    }
 }

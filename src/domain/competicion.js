@@ -64,4 +64,15 @@ export class competicion {
         return this.#usuarios.includes(user);
     }
 
+    eliminarUsuario(nombreUsuario) {
+        const indiceUsuario = this.#usuarios.findIndex(u => u === nombreUsuario);
+
+        if (indiceUsuario === -1) {
+            return false;
+        }
+
+        this.#usuarios.splice(indiceUsuario, 1);
+        return true;
+    }
+
 }
